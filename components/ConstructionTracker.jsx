@@ -78,12 +78,20 @@ export default function ConstructionTracker() {
       const ws = wb.Sheets[wb.SheetNames[0]];
       const rows = XLSX.utils.sheet_to_json(ws, { defval: "" });
       setTasks(rows.map((r, i) => ({
-        id: crypto.randomUUID(), project: activeProject,
-        name: r.Task || `Row ${i + 1}`, activity: r.Code || "excav_soft", quantity: r.Quantity || 0,
-        durationDays: r.Duration || 1, skilledPct: r.SkilledPct || 60,
-        equipment: r.Equipment || "N/A", unitCost: r.UnitCost || 0,
-        predecessor: r.Predecessor || "", material: r.Material || "", materialQty: r.MaterialQty || 0, materialLead: r.MaterialLead || 3
-      }))));
+  id: crypto.randomUUID(),
+  project: activeProject,
+  name: r.Task || `Row ${i + 1}`,
+  activity: r.Code || "excav_soft",
+  quantity: r.Quantity || 0,
+  durationDays: r.Duration || 1,
+  skilledPct: r.SkilledPct || 60,
+  equipment: r.Equipment || "N/A",
+  unitCost: r.UnitCost || 0,
+  predecessor: r.Predecessor || "",
+  material: r.Material || "",
+  materialQty: r.MaterialQty || 0,
+  materialLead: r.MaterialLead || 3
+})));
     };
     reader.readAsBinaryString(f);
   };
